@@ -20,6 +20,30 @@ class Ship:
 
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
+        self.moving_right = False
+        self.moving_left = False
+        self.x = float(self.rect.x)
+
+    def update(self) -> None:
+    # updating the position of the ship
+    self._update_ship_movement()
+    self.arsenal.update_arsenal()
+
+    def _update_ship_movement(self) -> None:
+    temp_speed = self.settings.ship_speed
+    if self.moving_right and self.rect.right < self.boundaries.right:
+        self.x += temp_speed
+    if self.moving_left and self.rect.left > self.boundaries.left:
+        self.x -= temp_speed
+
+    self.rect.x = self.x
 
     def draw(self) -> None:
-        self.screen.blit(self.image, self.rect)
+    self.arsenal.draw()
+    self.screen.blit(self.image, self.rect)
+
+    def fire(self):
+    return self.arsenal.fire_bullet()
+
+def draw(self) -> None:
+        elf.screen.blit(self.image, self.rect)
