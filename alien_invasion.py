@@ -19,22 +19,28 @@ class AlienInvasion:
         )
 
         self.running  = True
-        self.clock = Ship(self)
+
         self.ship = Ship(self)
 
 def run_game(self) -> None:
     # Game loop
     while self.running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-                pygame.quit()
-                sys.exit()
+        self._check_events()
 
-        self.screen.blit(self.bg, (0,0))
-        self.ship.draw()
-        pygame.display.flip()
+        self._update_screen()
         self.clock.tick(self.settings.FPS)
+
+def _update_screen(self) -> None:
+    self.screen.blit(self.bg, (0,0))
+    self.ship.draw()
+    pygame.display.flip()
+
+def _check_events(self) -> None:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            self.running = False
+            pygame.quit()
+            sys.exit()
 
 if __name__ == '__main__':
     ai = AlienInvasion()
